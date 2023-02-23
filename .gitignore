@@ -1,3 +1,4 @@
-dist/
+static/css
+static/js
 node_modules/
 .DS_Store

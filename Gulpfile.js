@@ -8,25 +8,30 @@ gulp.task('js', () => {
   const babel = require('gulp-babel');
   // const eslint = require('gulp-eslint');
 
-  return gulp.src('./src/js/*.js')
-    .pipe(sourcemaps.init())
-    // .pipe(eslint())
-    // .pipe(eslint.format())
-    // .pipe(eslint.failAfterError())
-    .pipe(babel({
-      presets: ['@babel/preset-env']
-    }))
-    .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest('./dist/'))
+  return (
+    gulp
+      .src('./src/js/*.js')
+      .pipe(sourcemaps.init())
+      // .pipe(eslint())
+      // .pipe(eslint.format())
+      // .pipe(eslint.failAfterError())
+      .pipe(
+        babel({
+          presets: ['@babel/preset-env'],
+        })
+      )
+      .pipe(sourcemaps.write('.'))
+      .pipe(gulp.dest('./static/js'))
+  );
 });
 
 /**
  * CSS Compilation
  */
 gulp.task('css', () => {
-  const autoprefixer = require('autoprefixer')
+  const autoprefixer = require('autoprefixer');
   const postcss = require('gulp-postcss');
-  const rtl = require("postcss-rtl");
+  const rtl = require('postcss-rtl');
   const nested = require('postcss-nested');
   const calc = require('postcss-calc');
   const atImport = require('postcss-import');
@@ -34,27 +39,29 @@ gulp.task('css', () => {
   const postcssCustomMedia = require('postcss-custom-media');
   const postcssCustomProperties = require('postcss-custom-properties');
 
-
-  return gulp.src('./src/css/style.css')
+  return gulp
+    .src('./src/css/style.css')
     .pipe(sourcemaps.init())
-    .pipe(postcss([
-      atImport(),
-      nested(),
-      postcssCustomMedia(),
-      postcssCustomProperties({
-        preserve: false
-      }),
-      calc(),
-      autoprefixer({
-        grid: 'no-autoplace'
-      }),
-      perfectionist({
-        indentSize: 2
-      }),
-      rtl(),
-    ]))
+    .pipe(
+      postcss([
+        atImport(),
+        nested(),
+        postcssCustomMedia(),
+        postcssCustomProperties({
+          preserve: false,
+        }),
+        calc(),
+        autoprefixer({
+          grid: 'no-autoplace',
+        }),
+        perfectionist({
+          indentSize: 2,
+        }),
+        rtl(),
+      ])
+    )
     .pipe(sourcemaps.write('.'))
-    .pipe(gulp.dest('./dist/'))
+    .pipe(gulp.dest('./static/css'));
 });
 
 function watchFiles() {
