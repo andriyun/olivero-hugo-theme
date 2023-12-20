@@ -1,5 +1,11 @@
-<script defer src="/js/polyfills.js"></script>
-<script defer src="/js/scripts.js"></script>
-<script defer src="/js/navigation.js"></script>
-<script defer src="/js/second-level-navigation.js"></script>
-<script defer src="/js/search.js"></script>
+{{ with resources.Get "js/polyfills.js" }}
+<script src="{{ .RelPermalink }}"></script>
+{{ end }} {{ with resources.Get "js/scripts.js" }}
+<script src="{{ .RelPermalink }}"></script>
+{{ end }} {{ with resources.Get "js/navigation.js" }}
+<script src="{{ .RelPermalink }}"></script>
+{{ end }} {{ with resources.Get "js/second-level-navigation.js" }}
+<script src="{{ .RelPermalink }}"></script>
+{{ end }} {{ with resources.Get "js/search.js" }}
+<script src="{{ .RelPermalink }}"></script>
+{{ end }}
